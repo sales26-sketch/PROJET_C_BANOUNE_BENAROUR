@@ -29,6 +29,7 @@ int changerJoueur(int joueur){
         return 1;
     }
 }
+//etape 7
 void jouerPrototype(void) {
     int joueurCourant = 1;
     int i;
