@@ -60,12 +60,33 @@ void initialiserGrille(int grille[NB_LIGNES][NB_COLONNES])
 }
 void afficherGrille(int grille[NB_LIGNES][NB_COLONNES])
 {
-     for (int i = 0; i < NB_LIGNES; i++)
+    char c;
+
+    for (int i = 0; i < NB_LIGNES; i++)
     {
-       for (int j = 0; j < NB_COLONNES; j++)
-       {
-         printf("grille[%d][%d]=%d\n",i,j,grille[i][j]);
-       }
-       
+        printf("| ");
+
+        for (int j = 0; j < NB_COLONNES; j++)
+        {
+            if (grille[i][j] == 0)
+            {
+                c = '.';
+            }
+            else if (grille[i][j] == 1)
+            {
+                c = 'X';
+            }
+            else if (grille[i][j] == 2)
+            {
+                c = 'O';
+            }
+
+            printf("%c ", c);
+        }
+
+        printf("|\n");
     }
+
+    printf("+---------------+\n");
+    printf("  1 2 3 4 5 6 7\n");
 }
