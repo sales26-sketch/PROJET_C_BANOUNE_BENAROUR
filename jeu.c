@@ -21,27 +21,51 @@ int demanderColonne(void){
     return colonne;
 }
 //Étape 6 
-int changerJoueur(int joueur){
-    if(joueur == 1){
-        return 2;
+void changerJoueur(int *joueur){
+    if(*joueur == 1){
+        *joueur= 2;
     }
     else{
-        return 1;
+        *joueur= 1;
     }
 }
-//etape 7
+void jouerTour(int *joueurCourant,int *nombreCoups){
+printf("TOUR du joueur %d\n",*joueurCourant);
+int colonne = demanderColonne();
+printf("Le joueur %d choisit la colonne  %d.\n",*joueurCourant,colonne);
+(*nombreCoups)++;
+changerJoueur(joueurCourant);
+}
 void jouerPrototype(void) {
+    int grille[NB_LIGNES][NB_COLONNES];
+    initialiserGrille(grille);
     int joueurCourant = 1;
-    int i;
-
-    for (i = 0; i < 6; i++) {
-        printf("Tour du joueur %d\n", joueurCourant);
-
-        int colonne = demanderColonne();
-
-        printf("Le joueur %d choisit la colonne %d.\n",
-               joueurCourant, colonne);
-
-        joueurCourant = changerJoueur(joueurCourant);
+    int nombreCoups=0;
+while(nombreCoups<6){
+    jouerTour(&joueurCourant,&nombreCoups);
+}
+printf("Nombre de coups joues : %d\n",nombreCoups);
+afficherGrille(grille);
+}
+void initialiserGrille(int grille[NB_LIGNES][NB_COLONNES])
+{
+    for (int i = 0; i < NB_LIGNES; i++)
+    {
+       for (int j = 0; j < NB_COLONNES; j++)
+       {
+         grille[i][j]=VIDE;
+       }
+       
+    }
+}
+void afficherGrille(int grille[NB_LIGNES][NB_COLONNES])
+{
+     for (int i = 0; i < NB_LIGNES; i++)
+    {
+       for (int j = 0; j < NB_COLONNES; j++)
+       {
+         printf("grille[%d][%d]=%d\n",i,j,grille[i][j]);
+       }
+       
     }
 }
